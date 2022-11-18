@@ -12,14 +12,22 @@ namespace ProyectoFinalEstetica.Controllers
         }
 
         [HttpGet]
-        public IActionResult Agendar()
+        public IActionResult Agendar1()
         {
+
             return View();
         }
 
         [HttpPost]
         public IActionResult Agendar(Turno turno)
         {
+            
+            return RedirectToAction(nameof(View));
+        }
+        [HttpPost]
+        public IActionResult AgendarManicuria(Turno turno)
+        {
+            
             return RedirectToAction(nameof(View));
         }
     }

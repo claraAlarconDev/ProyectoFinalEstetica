@@ -2,16 +2,26 @@
 
 <form asp-action="Agendar">
 
-	<div class="form-group" style="margin-top:10px>
+	<div class="form-group" style="margin-top:10px">
 		<label class="control-label">Nombre </label>
 		<input asp-for="Nombre" style="margin-left:10px" />
 	</div>
 	<div class="form-group" style="margin-top:10px">
 		<label class="control-label"> Email </label>
-		<input asp-for="Email" style="margin-left:10px" />
+		<input asp-for="Email" style="margin-left:10px" type="email" />
 	</div>
-	
-
+	<div class="form-group" style="margin-top:10px">
+		<label class="control-label"> Telefono </label>
+		<input asp-for="Telefono" style="margin-left:10px" type="tel"/>
+	</div>
+	<div class="form-group" style="margin-top:10px">
+		<label class="control-label"> Fecha </label>
+		<input asp-for="Fecha" style="margin-left:10px" />
+	</div>
+	<div class="form-group" style="margin-top:10px">
+		<label class="control-label"> Horario </label>
+		<input asp-for="Horario" style="margin-left:10px" type="datetime-local"/>
+	</div>
 	<div class="form-group" style="margin-top:10px">
 		<input type="submit" value="Enviar"  class="btn btn-outline-dark"/>
 	</div>
