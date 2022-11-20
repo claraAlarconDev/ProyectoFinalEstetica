@@ -11,7 +11,7 @@ using ProyectoFinalEstetica.Models;
 namespace ProyectoFinalEstetica.Migrations
 {
     [DbContext(typeof(AgendaContext))]
-    [Migration("20221118012507_migracion_inicial")]
+    [Migration("20221120223314_migracion_inicial")]
     partial class migracion_inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,6 +52,10 @@ namespace ProyectoFinalEstetica.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Especialidad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Fecha")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -74,7 +78,7 @@ namespace ProyectoFinalEstetica.Migrations
 
                     b.HasIndex("servicioId");
 
-                    b.ToTable("Turno");
+                    b.ToTable("Turnos");
                 });
 
             modelBuilder.Entity("ProyectoFinalEstetica.Models.Turno", b =>

@@ -1,2 +1,52 @@
-﻿<h1>Index Turno</h1>
+﻿@model IEnumerable<Turno>
+
+<h1>Index Turnos</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				<label>FECHA</label>
+			</th>
+			<th>
+				<label>HORARIO</label>
+			</th>
+			<th>
+				<label>NOMBRE</label>
+			</th>
+			<th>
+				<label>TELEFONO</label>
+			</th>
+			<th>
+				<label>ESPECIALIDAD</label>
+			</th>
+		</tr>
+	</thead>
+
+	@foreach(var item in Model){
+		<tr>
+			<td>
+				<label>@item.Fecha</label>
+			</td>
+		
+		
+			<td>
+				<label>@item.Horario</label>
+			</td>
+		
+		
+			<td>
+				<label>@item.Nombre</label>
+			</td>
+			
+			<td>
+				<label>@item.Telefono</label>
+			</td>
+		
+			<td>
+				<label>@item.Especialidad</label>
+			</td>
+		</tr>
+	}
+</table>
+
 

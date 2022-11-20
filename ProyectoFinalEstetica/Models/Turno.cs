@@ -13,6 +13,6 @@ namespace ProyectoFinalEstetica.Models
         public string Nombre { get; set; }
         public Servicio servicio { get; set; }
         public string Email { get; set; }
-        
+        public string Especialidad { get; set; }
     }
 }

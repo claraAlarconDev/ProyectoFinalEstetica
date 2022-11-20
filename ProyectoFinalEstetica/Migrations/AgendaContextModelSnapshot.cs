@@ -50,6 +50,10 @@ namespace ProyectoFinalEstetica.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Especialidad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Fecha")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -72,7 +76,7 @@ namespace ProyectoFinalEstetica.Migrations
 
                     b.HasIndex("servicioId");
 
-                    b.ToTable("Turno");
+                    b.ToTable("Turnos");
                 });
 
             modelBuilder.Entity("ProyectoFinalEstetica.Models.Turno", b =>

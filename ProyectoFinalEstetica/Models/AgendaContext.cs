@@ -14,7 +14,7 @@ namespace ProyectoFinalEstetica.Models
                 option.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=Turnos;Integrated Security=true");
             }
         }
-        public DbSet<Turno> Turno { get; set; }
+        public DbSet<Turno> Turnos  { get; set; }
         public DbSet<Servicio> Servicios { get; set; }
     }
 }
