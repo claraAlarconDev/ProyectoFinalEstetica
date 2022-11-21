@@ -22,28 +22,31 @@
 		</tr>
 	</thead>
 
-	@foreach(var item in Model){
+	@foreach(Turno turno in Model){
+		
 		<tr>
 			<td>
-				<label>@item.Fecha</label>
+				<label>@turno.Fecha</label>
 			</td>
 		
 		
 			<td>
-				<label>@item.Horario</label>
+				<label>@turno.Horario</label>
 			</td>
 		
 		
 			<td>
-				<label>@item.Nombre</label>
+				<label>@turno.Nombre</label>
 			</td>
 			
 			<td>
-				<label>@item.Telefono</label>
+				<label>@turno.Telefono</label>
 			</td>
-		
 			<td>
-				<label>@item.Especialidad</label>
+				<label>@turno.Especialidad</label>
+			</td>
+			<td>
+				<label>@turno.Id</label>
 			</td>
 		</tr>
 	}

@@ -1,12 +1,9 @@
 ﻿@model ProyectoFinalEstetica.Models.Turno
 
-@{
-    ViewData["Title"] = "AgendarPeluqueria";
-}
 
-<h1>AgendarPeluqueria</h1>
 
-<h4>Turno</h4>
+<h1 style="font-family:candara">¡Agenda tu turno para peluqueria!</h1>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,11 +12,11 @@
             <div class="form-group">
                 <label asp-for="Horario" class="control-label"></label>
                 <input asp-for="Horario" class="form-control" />
-                <span asp-validation-for="Horario" class="text-danger"></span>
+                <span asp-validation-for="Horario" class="text-danger" type="time" min="09:00" max="17:00"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" />
+                <input asp-for="Fecha" class="form-control" type="date"/>
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -38,20 +35,22 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Especialidad" class="control-label"></label>
-                <input asp-for="Especialidad" class="form-control" />
+                <label asp-for="Especialidad">Especialidad</label>
+                <select asp-for="Especialidad" class="form-control" id="exampleFormControlSelect1">
+                    <option>Seleccione una especialidad</option>
+                    <option>Corte</option>
+                    <option>Tintura</option>
+                </select>
                 <span asp-validation-for="Especialidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" style="margin-top:10px" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<a asp-action="Index" asp-controller="Home" class="btn btn-btn-outline-danger" style="margin-top:10px">Volver</a>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

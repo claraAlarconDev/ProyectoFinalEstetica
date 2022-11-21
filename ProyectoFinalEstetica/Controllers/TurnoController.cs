@@ -10,6 +10,7 @@ namespace ProyectoFinalEstetica.Controllers
         public IActionResult Index()
         {
             List<Turno> turnos = agendaContext.Turnos.ToList();
+            //List<Servicio> servicios = agendaContext.Servicios.ToList();
             return View(turnos);
         }
         [HttpGet]
@@ -21,6 +22,7 @@ namespace ProyectoFinalEstetica.Controllers
         [HttpPost]
         public IActionResult AgendarManicuria(Turno turno)
         {
+            
             Servicio? s = agendaContext.Servicios.Where(serve => serve.tipo == "Manicuria").FirstOrDefault();
             if (s != null)
             {
@@ -29,8 +31,8 @@ namespace ProyectoFinalEstetica.Controllers
                 turno.servicio = s;
                 
             }
-            agendaContext.Turnos.Add(turno);
-            agendaContext.SaveChanges();
+            //agendaContext.Turnos.Add(turno);
+            //agendaContext.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
@@ -42,6 +44,24 @@ namespace ProyectoFinalEstetica.Controllers
         public IActionResult AgendarPedicuria(Turno turno)
         {
             Servicio? s = agendaContext.Servicios.Where(serve => serve.tipo == "Pedicuria").FirstOrDefault();
+            if (s != null)
+            {
+                turno.servicio = s;
+
+            }
+            agendaContext.Turnos.Add(turno);
+            agendaContext.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpGet]
+        public IActionResult AgendarPeluqueria()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AgendarPeluqueria(Turno turno)
+        {
+            Servicio? s = agendaContext.Servicios.Where(serve => serve.tipo == "Peluqueria").FirstOrDefault();
             if (s != null)
             {
                 turno.servicio = s;
