@@ -50,27 +50,26 @@
 </div>
  
 <div>
-    <form id="Contacto" class="mb-5 ripe-malinka-gradient" style="box-shadow: 3px 3px red, -1em 0 .4em pink;">
+    <form asp-action="Contacto" id="Contacto" class="mb-5 ripe-malinka-gradient" style="box-shadow: 3px 3px red, -1em 0 .4em pink;">
 
         <div class="">
             <label class="form-label">Nombre completo</label>
-            <input type="text" class="form-control" placeholder="Nombre y apellido">
+            <input asp-for="Nombre" type="text" class="form-control" placeholder="Nombre y apellido*" required>
         </div>
         <div class="">
             <label class="form-label">Correo electrónico</label>
-            <input type="email" class="form-control" placeholder="Email" aria-describedby="emailHelp">
+            <input asp-for="Email" type="email" class="form-control" placeholder="Email*" aria-describedby="emailHelp" required>
             <div id="emailHelp" class="form-text text-danger text-end">Nunca compartiremos su correo electrónico con nadie más.</div>
         </div>
         <div class="">
             <label class="form-label">Asunto</label>
-            <input type="text" class="form-control" placeholder="Asunto" />
+            <input asp-for="Asunto" type="text" class="form-control" placeholder="Asunto*" required />
         </div>
         <div class="mb-3 ">
             <label class="form-label">Mensaje</label>
-            <input type="text" class="form-control form-contact-textarea" placeholder="Ingresa tu mensaje aqui..." />
+            <input asp-for="Mensaje" type="text" class="form-control form-contact-textarea" placeholder="Ingresa tu mensaje aqui..." />
         </div>
-        <div class="mb-5">
-            <a class="btn btn-primary d-block p-2">Enviar</a>
-        </div>
+        <button type="submit" class="btn btn-primary d-block p-2">Enviar</button>
+
     </form>
 </div>
