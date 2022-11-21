@@ -4,7 +4,7 @@
     ViewData["Title"] = "AgendarPedicuria";
 }
 
-<h1>AgendarPedicuria</h1>
+<h1>Agendar Pedicuria</h1>
 
 <h4>Turno</h4>
 <hr />
@@ -19,7 +19,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" type="date"/>
+                <input asp-for="Fecha" class="form-control" type="date" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -50,13 +50,13 @@
                 <span asp-validation-for="Especialidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary mt-3" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
+<div class="form-group mt-3">
     <a asp-action="Index">Back to List</a>
 </div>
 
