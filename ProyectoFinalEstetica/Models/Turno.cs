@@ -11,8 +11,11 @@ namespace ProyectoFinalEstetica.Models
         public string Fecha { get; set; }
         public int Telefono { get; set; }
         public string Nombre { get; set; }
-        public Servicio servicio { get; set; }
-        public string Email { get; set; }
+
+        public Servicio Servicio { get; set; }
+
+		public string Email { get; set; }
         public string Especialidad { get; set; }
+
     }
 }

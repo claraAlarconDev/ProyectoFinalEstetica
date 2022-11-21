@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Turno>
 
-<h1>Index Turnos</h1>
+<h2>Turnos</h2>
 <table class="table">
 	<thead>
 		<tr>
@@ -15,6 +15,9 @@
 			</th>
 			<th>
 				<label>TELEFONO</label>
+			</th>
+			<th>
+				<label>TIPO</label>
 			</th>
 			<th>
 				<label>ESPECIALIDAD</label>
@@ -41,7 +44,10 @@
 			<td>
 				<label>@item.Telefono</label>
 			</td>
-		
+			<td>
+				<label>@item.Servicio.Tipo</label>
+			</td>
+				
 			<td>
 				<label>@item.Especialidad</label>
 			</td>

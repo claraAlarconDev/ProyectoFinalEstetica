@@ -9,8 +9,9 @@ namespace ProyectoFinalEstetica.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            List<Turno> turnos = agendaContext.Turnos.ToList();
-            return View(turnos);
+			agendaContext.Servicios.ToList();
+			List<Turno> turnos = agendaContext.Turnos.ToList();
+			return View(turnos);
         }
         [HttpGet]
         public IActionResult AgendarManicuria()
@@ -21,12 +22,12 @@ namespace ProyectoFinalEstetica.Controllers
         [HttpPost]
         public IActionResult AgendarManicuria(Turno turno)
         {
-            Servicio? s = agendaContext.Servicios.Where(serve => serve.tipo == "Manicuria").FirstOrDefault();
+            Servicio? s = agendaContext.Servicios.Where(serve => serve.Tipo == "Manicuria").FirstOrDefault();
             if (s != null)
             {
                 //Servicio servicio = new Servicio();
                 //servicio.tipo = "Manicuria";
-                turno.servicio = s;
+                turno.Servicio = s;
                 
             }
             agendaContext.Turnos.Add(turno);
@@ -41,10 +42,10 @@ namespace ProyectoFinalEstetica.Controllers
         [HttpPost]
         public IActionResult AgendarPedicuria(Turno turno)
         {
-            Servicio? s = agendaContext.Servicios.Where(serve => serve.tipo == "Pedicuria").FirstOrDefault();
+            Servicio? s = agendaContext.Servicios.Where(serve => serve.Tipo == "Pedicuria").FirstOrDefault();
             if (s != null)
             {
-                turno.servicio = s;
+                turno.Servicio = s;
 
             }
             agendaContext.Turnos.Add(turno);

@@ -11,7 +11,7 @@ using ProyectoFinalEstetica.Models;
 namespace ProyectoFinalEstetica.Migrations
 {
     [DbContext(typeof(AgendaContext))]
-    [Migration("20221120223314_migracion_inicial")]
+    [Migration("20221120233544_migracion_inicial")]
     partial class migracion_inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
