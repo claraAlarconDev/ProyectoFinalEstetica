@@ -111,6 +111,7 @@ namespace ProyectoFinalEstetica.Controllers
         public IActionResult EditManicuria(int Id)
         {
             Turno? turnoBuscado = agendaContext.Turnos.Find(Id);
+
             List<string> horarios = new List<string> { "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00" };
             Dictionary<string, List<string>> mapaHorariosDisponiblesPorDia = new Dictionary<string, List<string>>();
             List<Turno> turnos = agendaContext.Turnos.Where(x => x.Fecha >= DateTime.Today).ToList();
@@ -124,6 +125,7 @@ namespace ProyectoFinalEstetica.Controllers
             }
 
             this.ViewData.Add("horariosDisponibles", mapaHorariosDisponiblesPorDia);
+
             if (turnoBuscado != null)
             {
                 return View(turnoBuscado);
