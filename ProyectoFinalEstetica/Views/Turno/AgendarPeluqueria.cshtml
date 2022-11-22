@@ -4,7 +4,7 @@
     ViewData["Title"] = "AgendarPeluqueria";
 }
 
-<h1>AgendarPeluqueria</h1>
+<h1>Agendar Peluqueria</h1>
 
 <h4>Turno</h4>
 <hr />
@@ -14,12 +14,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Horario" class="control-label"></label>
-                <input asp-for="Horario" class="form-control" />
-                <span asp-validation-for="Horario" class="text-danger"></span>
+                <input asp-for="Horario" class="form-control" type="time" min="09:00" max="17:00" />
+                <span asp-validation-for="Horario" class="text-danger" ></span>
             </div>
             <div class="form-group">
                 <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" />
+                <input asp-for="Fecha" class="form-control" type="date" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -38,18 +38,25 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Especialidad" class="control-label"></label>
-                <input asp-for="Especialidad" class="form-control" />
+                <label asp-for="Especialidad" class="control-label">Especialidad</label>
+                <select asp-for="Especialidad" class="form-control" id="exampleFormControlSelect1">
+                <option>Seleccione una especialidad</option>
+                <option>Corte</option>
+                <option>Alisado</option>
+                <option>Balayage</option>
+                <option>Reflejos</option>
+                <option>Baño de nutricion</option>
+                </select>
                 <span asp-validation-for="Especialidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary mt-3" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
+<div class="form-group mt-3">
     <a asp-action="Index">Back to List</a>
 </div>
 

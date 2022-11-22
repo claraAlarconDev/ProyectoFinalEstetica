@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Turno>
 
-<h2>Turnos</h2>
+<h1>Index Turnos</h1>
 <table class="table">
 	<thead>
 		<tr>
@@ -17,25 +17,20 @@
 				<label>TELEFONO</label>
 			</th>
 			<th>
-				<label>TIPO</label>
-			</th>
-			<th>
 				<label>ESPECIALIDAD</label>
-			</th>
+			</th>	
 		</tr>
 	</thead>
 
 	@foreach(var item in Model){
 		<tr>
 			<td>
-				<label>@item.Fecha</label>
+				<label>@item.Fecha.ToShortDateString()</label>
 			</td>
-		
 		
 			<td>
 				<label>@item.Horario</label>
 			</td>
-		
 		
 			<td>
 				<label>@item.Nombre</label>
@@ -44,15 +39,17 @@
 			<td>
 				<label>@item.Telefono</label>
 			</td>
+		
 			<td>
-				<label>@item.Servicio.Tipo</label>
+				<label>@item.servicio.tipo</label>
 			</td>
-				
+
 			<td>
 				<label>@item.Especialidad</label>
 			</td>
-		</tr>
+		</tr> 
 	}
 </table>
+}
 
 

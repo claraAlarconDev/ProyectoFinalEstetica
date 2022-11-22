@@ -1,51 +1,93 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using NuGet.Versioning;
 using ProyectoFinalEstetica.Models;
+using System;
 
 namespace ProyectoFinalEstetica.Controllers
 {
     public class TurnoController : Controller
     {
         AgendaContext agendaContext = new AgendaContext();
+
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(String phone = "")
         {
-			_ = agendaContext.Servicios.ToList();
-			List<Turno> turnos = agendaContext.Turnos.ToList();
-			return View(turnos);
+            Int32 phoneNumber;
+            bool validNumber = Int32.TryParse(phone, out phoneNumber);
+            List<Turno> turnos = new List<Turno>();
+            
+            if (validNumber)
+                turnos = agendaContext.Turnos.Include(t => t.servicio).Where(x => x.Telefono.Equals(phoneNumber)).ToList();
+            return View(turnos);
         }
+
         [HttpGet]
         public IActionResult AgendarManicuria()
-       
         {
+            List<string> horarios = new List<string>{ "9:00","10:00","11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00" };
+            Dictionary<string, List<string>> mapaHorariosDisponiblesPorDia = new Dictionary<string, List<string>>();
+            List<Turno> turnos = agendaContext.Turnos.Where(x => x.Fecha >= DateTime.Today).ToList();
+            for (int i = 0; i < 7; i++)
+            {
+                string dia = DateTime.Today.AddDays(i).ToString("yyyy-MM-dd");
+                List<string> turnosDelDiaOcupados = turnos.Where(x => x.Fecha.Equals(DateTime.Today.AddDays(i))).Select(x => x.Horario).ToList();
+                List<string> horariosDisponiblesDelDia = horarios.ToList();
+                horariosDisponiblesDelDia.RemoveAll(x => turnosDelDiaOcupados.Contains(x));
+                mapaHorariosDisponiblesPorDia.Add(dia, horariosDisponiblesDelDia);
+            }
+
+            this.ViewData.Add("horariosDisponibles", mapaHorariosDisponiblesPorDia);
+
             return View();
         }
         [HttpPost]
         public IActionResult AgendarManicuria(Turno turno)
         {
-            Servicio? s = agendaContext.Servicios.Where(serve => serve.Tipo == "Manicuria").FirstOrDefault();
+            Servicio? s = agendaContext.Servicios.Where(serve => serve.tipo == "Manicuria").FirstOrDefault();
             if (s != null)
             {
-                //Servicio servicio = new Servicio();
-                //servicio.tipo = "Manicuria";
-                turno.Servicio = s;
-                
+                turno.servicio = s;
+                agendaContext.Turnos.Add(turno);
+                agendaContext.SaveChanges();
+                return RedirectToAction("Index", "");
             }
-            agendaContext.Turnos.Add(turno);
-            agendaContext.SaveChanges();
-            return RedirectToAction(nameof(Index));
+            return View(turno);
         }
+
         [HttpGet]
         public IActionResult AgendarPedicuria()
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult AgendarPedicuria(Turno turno)
         {
-            Servicio? s = agendaContext.Servicios.Where(serve => serve.Tipo == "Pedicuria").FirstOrDefault();
+            Servicio? s = agendaContext.Servicios.Where(serve => serve.tipo == "Pedicuria").FirstOrDefault();
             if (s != null)
             {
-                turno.Servicio = s;
+                turno.servicio = s;
+
+            }
+            agendaContext.Turnos.Add(turno);
+            agendaContext.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult AgendarPeluqueria()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AgendarPeluqueria(Turno turno)
+        {
+            Servicio? s = agendaContext.Servicios.Where(serve => serve.tipo == "Peluqueria").FirstOrDefault();
+            if (s != null)
+            {
+                turno.servicio = s;
 
             }
             agendaContext.Turnos.Add(turno);
