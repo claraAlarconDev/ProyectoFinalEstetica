@@ -1,30 +1,6 @@
 ﻿@model IEnumerable<Turno>
 
-<h1>Mis turnos</h1>
-<hr />
-
-<form asp-action="Index" method="get" >
-	<div class="row">
-		<div class="col-md-4">
-			<form asp-action="Index">
-				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-				<div class="form-group">
-					<label class="control-label">Ingrese numero de telefono:</label>
-					<input class="form-control" type="text" id="phone" name="phone" />
-					<span class="text-danger"></span>
-				</div>
-
-				<div class="form-group">
-					<input type="submit" value="Buscar" class="btn btn-primary mt-3" />
-				</div>
-			</form>
-		</div>
-	</div>
-	
-</form>
-
-@if(Model.FirstOrDefault() != null ){
+<h1>Index Turnos</h1>
 <table class="table">
 	<thead>
 		<tr>
@@ -39,9 +15,6 @@
 			</th>
 			<th>
 				<label>TELEFONO</label>
-			</th>
-			<th>
-				<label>SERVICIO</label>
 			</th>
 			<th>
 				<label>ESPECIALIDAD</label>
@@ -74,7 +47,7 @@
 			<td>
 				<label>@turno.servicio.tipo</label>
 			</td>
-
+		
 			<td>
 				<label>@turno.Especialidad</label>
 			</td>
