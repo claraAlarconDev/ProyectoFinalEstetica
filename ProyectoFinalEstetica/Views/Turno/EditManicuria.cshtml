@@ -1,12 +1,11 @@
 ﻿@model ProyectoFinalEstetica.Models.Turno
 
-
-<h1 style="font-family:candara">¡Agenda tu turno para manicuria!</h1>
-
 @{
     Dictionary<string, List<string>> horariosDisponibles = (Dictionary<string, List<string>>)ViewData["horariosDisponibles"];
- 
+
 }
+<h1>Edit Manicuria</h1>
+
 
 <script type="text/javascript">
     var jsonHorariosDisponiblesPorDia = @Json.Serialize(horariosDisponibles);
@@ -27,21 +26,19 @@
     }
 </script>
 
-
-
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AgendarManicuria">
+        <form asp-action="EditManicuria">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            
+
             <div class="form-group">
                 <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" type="date" 
-                    min="@DateTime.Today.ToString("yyyy-MM-dd")"
-                    max="@DateTime.Today.AddDays(7).ToString("yyyy-MM-dd")" 
-                    onchange="changeDate(event);" />
+                <input asp-for="Fecha" class="form-control" type="date"
+                       min="@DateTime.Today.ToString("yyyy-MM-dd")"
+                       max="@DateTime.Today.AddDays(7).ToString("yyyy-MM-dd")"
+                       onchange="changeDate(event);" />
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
 
@@ -53,7 +50,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Telefono" class="control-label"></label>
-                <input asp-for="Telefono" class="form-control"/>
+                <input asp-for="Telefono" class="form-control" />
                 <span asp-validation-for="Telefono" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -67,30 +64,30 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
-             <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Especialidad">Especialidad</label>
                 <select asp-for="Especialidad" class="form-control" id="exampleFormControlSelect1">
                     <option>Seleccione una especialidad</option>
-                    <option >Kapping</option>
-                    <option >Semi-permanente</option>
+                    <option>Kapping</option>
+                    <option>Semi-permanente</option>
                     <option>Permanente</option>
-                    <option >Acrilico</option>
+                    <option>Acrilico</option>
                     <option>Gel</option>
                 </select>
                 <span asp-validation-for="Especialidad" class="text-danger"></span>
             </div>
             <div class="form-group">
 
-                <input type="submit" value="Create" class="btn btn-primary mt-3" />
+                <input type="submit" value="Editar" class="btn btn-primary mt-3" />
 
             </div>
         </form>
     </div>
 </div>
 
-
-<a asp-action="Index" asp-controller="Home" class="btn btn-btn-outline-danger" style="margin-top:10px">Volver</a>
-
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

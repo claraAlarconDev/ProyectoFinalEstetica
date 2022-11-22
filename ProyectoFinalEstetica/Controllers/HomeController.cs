@@ -18,7 +18,7 @@ namespace ProyectoFinalEstetica.Controllers
         [HttpPost]
         public IActionResult Contacto(Contacto contacto)
         {
-            agendaContext.Contacto.Add(contacto);
+            agendaContext.Contactos.Add(contacto);
             agendaContext.SaveChanges();
             return View(contacto);
         }
