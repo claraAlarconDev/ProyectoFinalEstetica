@@ -1,7 +1,9 @@
 ﻿@model ProyectoFinalEstetica.Models.Turno
 
 
+
 <h1 style="font-family:candara">¡Agenda tu turno para pedicuria!</h1>
+
 
 <hr />
 <div class="row">
@@ -15,7 +17,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" type="date"/>
+                <input asp-for="Fecha" class="form-control" type="date" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -46,13 +48,16 @@
                 <span asp-validation-for="Especialidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" style="margin-top:10px" />
+
+                <input type="submit" value="Create" class="btn btn-primary mt-3" />
+
             </div>
         </form>
     </div>
 </div>
 
 <a asp-action="Index" asp-controller="Home" class="btn btn-btn-outline-danger" style="margin-top:10px">Volver</a>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
