@@ -17,6 +17,8 @@ namespace ProyectoFinalEstetica.Models
         public DbSet<Turno> Turnos  { get; set; }
         public DbSet<Servicio> Servicios { get; set; }
 
-        public DbSet<Contacto> Contacto { get; set; }
+        public DbSet<Contacto> Contactos { get; set; }
+
+        public DbSet<Administrador> Administradores { get; set; }
     }
 }
