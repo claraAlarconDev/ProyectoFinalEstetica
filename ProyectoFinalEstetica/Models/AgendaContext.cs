@@ -11,7 +11,7 @@ namespace ProyectoFinalEstetica.Models
 
             if (!option.IsConfigured)
             {
-                option.UseSqlServer("server=(localdb)\\MSSQLLocalDB;database=Turnos;Integrated Security=true");
+                option.UseSqlServer("server=SOL-BARBOZA\\SQLEXPRESS;database=Turnos;Integrated Security=true");
             }
         }
         public DbSet<Turno> Turnos  { get; set; }
