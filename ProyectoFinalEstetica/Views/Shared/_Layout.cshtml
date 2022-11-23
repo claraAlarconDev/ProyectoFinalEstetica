@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ProyectoFinalEstetica.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/StyleSheet.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/wspBtn.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body style="background-color: #CBB7E5; ">
 
@@ -45,20 +45,45 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="footer">
+    <a href="https://api.whatsapp.com/send?phone=5491130067996&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n" class="float" target="_blank">
+        <i class="fa-brands fa-whatsapp my-float"></i>
+    </a>
+    <footer class="footer" style="line-height:40px;">
         <div class="waves">
             <div class="wave" id="wave1"></div>
             <div class="wave" id="wave2"></div>
             <div class="wave" id="wave3"></div>
             <div class="wave" id="wave4"></div>
         </div>
+        <div class="text-light text-center" style="margin-left : 10px; font-size: 12px;">
+            <h5>Informacion de contacto.</h5>
 
-        <ul class="menu">
-            <li class="menu__item"><a class="menu__link" href="#">Home</a></li>
-            <li class="menu__item"><a class="menu__link" href="#Contacto">Contact us</a></li>
-        </ul>
-        <p style="opacity: 0.75;">Echo por Clara Alarcon, Sol Barboza, Sebastian Amarante.</p>
+            <ul style="list-style: none; padding:0px; margin:0px;">
+                <li class="p-0">
+                    <i class="fa-brands fa-instagram">
+                        <a class="link-light" style="text-decoration:none;" href="#">Seguinos en instagram</a>
+                    </i>
+                </li>
+                <li>
+                    <i class="fa-solid fa-envelope">
+                        <a class="link-light" style="text-decoration:none;" href="#">laestetica@gmail.com</a>
+                    </i>
+                </li>
+                <li>
+                    <i class="fa-brands fa-facebook">
+                        <a class="link-light" style="text-decoration:none;" href="#">Seguinos en Facebook.</a>
+                    </i>
+                </li>
+                <li>
+                    <i class="fa-solid fa-location-dot">
+                        <a class="link-light" style="text-decoration: none;" href="#">
+                            Av. del Libertador 6796, C1429 CABA
+                        </a>
+                    </i>
+                </li>
+            </ul>
+        </div>
+        <p class="text-white-50 text-center mt-4" style="opacity: 0.75;">Echo por Clara Alarcon, Sol Barboza, Sebastian Amarante.</p>
 
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
