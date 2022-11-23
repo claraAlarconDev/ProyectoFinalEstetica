@@ -134,5 +134,68 @@ namespace ProyectoFinalEstetica.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+        [HttpPost]
+        public IActionResult UpdateManicuria(int Id,Turno turno)
+        {
+            
+            
+                if (Id != turno.Id)
+                {
+                    return NotFound();
+                }
+                Servicio? s = agendaContext.Servicios.Where(serve => serve.tipo == "Manicuria").FirstOrDefault();
+                if (s != null)
+                {
+                    turno.servicio = s;
+
+                }
+               
+                    agendaContext.Turnos.Update(turno);
+                    agendaContext.SaveChanges();
+          
+                return RedirectToAction(nameof(Index));
+            
+        }
+        [HttpPost]
+        public IActionResult UpdatePedicuria(int Id, Turno turno)
+        {
+
+            if (Id != turno.Id)
+            {
+                return NotFound();
+            }
+            
+            Servicio? s = agendaContext.Servicios.Where(serve => serve.tipo == "Pedicuria").FirstOrDefault();
+            if (s != null)
+            {
+                turno.servicio = s;
+
+            }
+           
+                agendaContext.Turnos.Update(turno);
+                agendaContext.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public IActionResult UpdatePeluqueria(int Id, Turno turno)
+        {
+
+            if (Id != turno.Id)
+            {
+                return NotFound();
+            }
+            Servicio? s = agendaContext.Servicios.Where(serve => serve.tipo == "Peluqueria").FirstOrDefault();
+            if (s != null)
+            {
+                turno.servicio = s;
+
+            }
+            
+                agendaContext.Turnos.Update(turno);
+                agendaContext.SaveChanges();
+            
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
