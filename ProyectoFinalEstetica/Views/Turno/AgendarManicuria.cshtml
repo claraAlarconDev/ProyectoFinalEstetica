@@ -1,11 +1,7 @@
 ﻿@model ProyectoFinalEstetica.Models.Turno
-
-
-<h1 style="font-family:candara">¡Agenda tu turno para manicuria!</h1>
-
 @{
     Dictionary<string, List<string>> horariosDisponibles = (Dictionary<string, List<string>>)ViewData["horariosDisponibles"];
- 
+
 }
 
 <script type="text/javascript">
@@ -27,15 +23,12 @@
     }
 </script>
 
-
-
+<h1 style="font-family:candara">¡Agenda tu turno para manicuria!</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="AgendarManicuria">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            
             <div class="form-group">
                 <label asp-for="Fecha" class="control-label"></label>
                 <input asp-for="Fecha" class="form-control" type="date" 
@@ -44,7 +37,6 @@
                     onchange="changeDate(event);" />
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
-
             <div class="form-group">
                 <label asp-for="Horario">Horario</label>
                 <select asp-for="Horario" class="form-control" id="selectHorarios">
@@ -66,7 +58,6 @@
                 <input asp-for="Email" class="form-control" type="email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-
              <div class="form-group">
                 <label asp-for="Especialidad">Especialidad</label>
                 <select asp-for="Especialidad" class="form-control" id="exampleFormControlSelect1">
@@ -80,17 +71,13 @@
                 <span asp-validation-for="Especialidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-
                 <input type="submit" value="Create" class="btn btn-primary mt-3" />
-
             </div>
         </form>
     </div>
 </div>
 
-
 <a asp-action="Index" asp-controller="Home" class="btn btn-btn-outline-danger" style="margin-top:10px">Volver</a>
-
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

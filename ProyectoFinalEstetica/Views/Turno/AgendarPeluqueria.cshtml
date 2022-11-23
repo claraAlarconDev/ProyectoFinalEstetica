@@ -1,22 +1,47 @@
 ﻿@model ProyectoFinalEstetica.Models.Turno
+@{
+    Dictionary<string, List<string>> horariosDisponibles = (Dictionary<string, List<string>>)ViewData["horariosDisponibles"];
 
+}
+
+<script type="text/javascript">
+    var jsonHorariosDisponiblesPorDia = @Json.Serialize(horariosDisponibles);
+
+    function changeDate(e) {
+        var horariosDisponibles = jsonHorariosDisponiblesPorDia[e.target.value]
+        var select = document.getElementById("selectHorarios")
+
+        select.innerHTML = ""
+
+        for (index in horariosDisponibles) {
+            var opt = document.createElement("option");
+            opt.value = horariosDisponibles[index];
+            opt.innerHTML = horariosDisponibles[index];
+
+            select.appendChild(opt);
+        }
+    }
+</script>
 
 <h1 style="font-family:candara">¡Agenda tu turno para peluqueria!</h1>
-
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="AgendarPeluqueria">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Horario" class="control-label"></label>
-                <input asp-for="Horario" class="form-control" type="time" min="09:00" max="17:00" />
-                <span asp-validation-for="Horario" class="text-danger" ></span>
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="form-control" type="date"
+                       min="@DateTime.Today.ToString("yyyy-MM-dd")"
+                       max="@DateTime.Today.AddDays(7).ToString("yyyy-MM-dd")"
+                       onchange="changeDate(event);" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Fecha" class="control-label"></label>
-                <input asp-for="Fecha" class="form-control" type="date" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
-                <span asp-validation-for="Fecha" class="text-danger"></span>
+                <label asp-for="Horario">Horario</label>
+                <select asp-for="Horario" class="form-control" id="selectHorarios">
+                </select>
+                <span asp-validation-for="Horario" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Telefono" class="control-label"></label>
@@ -30,7 +55,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <input asp-for="Email" class="form-control" type="email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -46,12 +71,11 @@
                 <span asp-validation-for="Especialidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" style="margin-top:10px" />
+                <input type="submit" value="Create" class="btn btn-primary mt-3" />
             </div>
         </form>
     </div>
 </div>
-
 
 <a asp-action="Index" asp-controller="Home" class="btn btn-btn-outline-danger" style="margin-top:10px">Volver</a>
 
