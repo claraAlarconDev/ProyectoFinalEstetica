@@ -1,6 +1,6 @@
-﻿@model IEnumerable<Contacto>
+﻿
 
-<h1>Contactos pendientes</h1>
+<h1>Para poder ingresar complete con su cotraseña:</h1>
 <hr />
 
 <form asp-action="Index" method="get">
@@ -21,45 +21,4 @@
 	</div>
 
 </form>
-@if(Model.FirstOrDefault() != null){
-	<table class="table">
-		<thead>
-			<tr>
-				<th>
-					<label>Nombre</label>
-				</th>
-				<th>
-					<label>Email</label>
-				</th>
-				<th>
-					<label>Asunto</label>
-				</th>
-				<th>
-					<label>Mensaje</label>
-				</th>
-				<th></th>
-			</tr>
-		</thead>
-	@foreach(var contacto in Model){
-		<tr>
-			
-			<td>
-				<label>@contacto.Nombre</label>
-			</td>
-			<td>
-				<label>@contacto.Email</label>
-			</td>
-			<td>
-				<label>@contacto.Asunto</label>
-			</td>
-			<td>
-				<label>@contacto.Mensaje</label>
-			</td>
-			<td>
-					<a asp-action="Delete" asp-route-id="@contacto.ContactID" class="btn btn-danger">Borrar</a>
-			</td>
-			
-		</tr>
-	}
-	</table>
-}
+<a asp-action="Index" asp-controller="Home" class="btn btn-info" style="margin-top:10px">Volver</a>
