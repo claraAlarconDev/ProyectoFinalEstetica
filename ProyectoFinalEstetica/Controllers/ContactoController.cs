@@ -11,13 +11,20 @@ namespace ProyectoFinalEstetica.Controllers
         [HttpGet]
 		public IActionResult Index(String password)
 		{
-			List<Contacto> contactoList = new List<Contacto>();
-			Administrador? admin = agendaContext.Administradores.Where(admi => admi.Contraseña == password).FirstOrDefault();
-			if (admin!=null)
+            Administrador? admin = agendaContext.Administradores.Where(admi => admi.Contraseña == password).FirstOrDefault();
+            if (admin != null)
 			{
-				contactoList = agendaContext.Contactos.ToList();
-			}
-			return View(contactoList);
+                return RedirectToAction(nameof(Consultas));
+            }
+			return View();
+		}
+        
+        [HttpGet]
+		public IActionResult Consultas()
+		{
+            List<Contacto> contactoList = new List<Contacto>();
+            contactoList = agendaContext.Contactos.ToList();
+            return View(contactoList);
 		}
 		[HttpGet]
 		public IActionResult Delete(int Id)
@@ -31,7 +38,7 @@ namespace ProyectoFinalEstetica.Controllers
 			} 
 
 
-				return RedirectToAction(nameof(Index));
+				return RedirectToAction(nameof(Consultas));
 			
 			
         }

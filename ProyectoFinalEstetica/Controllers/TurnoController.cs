@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Versioning;
+
 using ProyectoFinalEstetica.Models;
-using System;
+
 
 namespace ProyectoFinalEstetica.Controllers
 {

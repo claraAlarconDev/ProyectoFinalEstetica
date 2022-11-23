@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Contacto>
+
+<h1>Consultas pendientes</h1>
+<hr />
+@if (Model.FirstOrDefault() != null)
+{
+	<table class="table table-hover table-secondary table-striped">
+		<thead class="table-primary">
+			<tr>
+				<th>
+					<label>Nombre</label>
+				</th>
+				<th>
+					<label>Email</label>
+				</th>
+				<th>
+					<label>Asunto</label>
+				</th>
+				<th>
+					<label>Mensaje</label>
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		@foreach (var contacto in Model)
+		{
+			<tr>
+
+				<td>
+					<label>@contacto.Nombre</label>
+				</td>
+				<td>
+					<label>@contacto.Email</label>
+				</td>
+				<td>
+					<label>@contacto.Asunto</label>
+				</td>
+				<td>
+					<label>@contacto.Mensaje</label>
+				</td>
+				<td>
+					<a asp-action="Delete" asp-route-id="@contacto.ContactID" class="btn btn-danger">Borrar</a>
+				</td>
+
+			</tr>
+		}
+	</table>
+	<a asp-action="Index" asp-controller="Contacto" class="btn btn-primary mt-3" style="margin-top:10px">Volver</a>
+}

@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using NuGet.Common;
+﻿using Microsoft.AspNetCore.Mvc;
 using ProyectoFinalEstetica.Models;
 
 namespace ProyectoFinalEstetica.Controllers
@@ -22,6 +19,6 @@ namespace ProyectoFinalEstetica.Controllers
             agendaContext.SaveChanges();
             return View(contacto);
         }
-        
+
     }
 }
