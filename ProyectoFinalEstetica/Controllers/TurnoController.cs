@@ -145,6 +145,17 @@ namespace ProyectoFinalEstetica.Controllers
             return RedirectToAction("MisTurnos", new { phone = turnoBuscado?.Telefono });
         }
         [HttpGet]
+        public IActionResult DeleteAdmin(int Id)
+        {
+            Turno? turnoBuscado = agendaContext.Turnos.Find(Id);
+            if (turnoBuscado != null)
+            {
+                agendaContext.Turnos.Remove(turnoBuscado);
+                agendaContext.SaveChanges();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpGet]
         public IActionResult EditManicuria(int Id)
         {
             Turno? turnoBuscado = agendaContext.Turnos.Find(Id);

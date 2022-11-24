@@ -11,7 +11,7 @@ namespace ProyectoFinalEstetica.Controllers
         {
             return View();
         }
-
+        
         [HttpPost]
         public IActionResult Contacto(Contacto contacto)
         {
