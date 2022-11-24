@@ -13,7 +13,7 @@ namespace ProyectoFinalEstetica.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+                return View();
         }
 
         [HttpGet]
@@ -22,9 +22,11 @@ namespace ProyectoFinalEstetica.Controllers
             Int32 phoneNumber;
             bool validNumber = Int32.TryParse(phone, out phoneNumber);
             List<Turno> turnos = new List<Turno>();
-            
             if (validNumber)
-                turnos = agendaContext.Turnos.Include(t => t.servicio).Where(x => x.Telefono.Equals(phoneNumber)).ToList();
+            {
+                 turnos = agendaContext.Turnos.Include(t => t.servicio).Where(x => x.Telefono.Equals(phoneNumber)).ToList();
+            }
+
             return View(turnos);
         }
 
@@ -168,6 +170,62 @@ namespace ProyectoFinalEstetica.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+        [HttpGet]
+        public IActionResult EditPeluqueria(int Id)
+        {
+            Turno? turnoBuscado = agendaContext.Turnos.Find(Id);
+
+            List<string> horarios = new List<string> { "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00" };
+            Dictionary<string, List<string>> mapaHorariosDisponiblesPorDia = new Dictionary<string, List<string>>();
+            List<Turno> turnos = agendaContext.Turnos.Where(x => x.Fecha >= DateTime.Today).ToList();
+            for (int i = 0; i < 7; i++)
+            {
+                string dia = DateTime.Today.AddDays(i).ToString("yyyy-MM-dd");
+                List<string> turnosDelDiaOcupados = turnos.Where(x => x.Fecha.Equals(DateTime.Today.AddDays(i))).Select(x => x.Horario).ToList();
+                List<string> horariosDisponiblesDelDia = horarios.ToList();
+                horariosDisponiblesDelDia.RemoveAll(x => turnosDelDiaOcupados.Contains(x));
+                mapaHorariosDisponiblesPorDia.Add(dia, horariosDisponiblesDelDia);
+            }
+
+            this.ViewData.Add("horariosDisponibles", mapaHorariosDisponiblesPorDia);
+
+            if (turnoBuscado != null)
+            {
+                return View(turnoBuscado);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
+        [HttpGet]
+        public IActionResult EditPedicuria(int Id)
+        {
+            Turno? turnoBuscado = agendaContext.Turnos.Find(Id);
+
+            List<string> horarios = new List<string> { "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00" };
+            Dictionary<string, List<string>> mapaHorariosDisponiblesPorDia = new Dictionary<string, List<string>>();
+            List<Turno> turnos = agendaContext.Turnos.Where(x => x.Fecha >= DateTime.Today).ToList();
+            for (int i = 0; i < 7; i++)
+            {
+                string dia = DateTime.Today.AddDays(i).ToString("yyyy-MM-dd");
+                List<string> turnosDelDiaOcupados = turnos.Where(x => x.Fecha.Equals(DateTime.Today.AddDays(i))).Select(x => x.Horario).ToList();
+                List<string> horariosDisponiblesDelDia = horarios.ToList();
+                horariosDisponiblesDelDia.RemoveAll(x => turnosDelDiaOcupados.Contains(x));
+                mapaHorariosDisponiblesPorDia.Add(dia, horariosDisponiblesDelDia);
+            }
+
+            this.ViewData.Add("horariosDisponibles", mapaHorariosDisponiblesPorDia);
+
+            if (turnoBuscado != null)
+            {
+                return View(turnoBuscado);
+            }
+            else
+            {
+                return RedirectToAction(nameof(Index));
+            }
+        }
         [HttpPost]
         public IActionResult UpdateManicuria(int Id,Turno turno)
         {
@@ -186,9 +244,9 @@ namespace ProyectoFinalEstetica.Controllers
                
                     agendaContext.Turnos.Update(turno);
                     agendaContext.SaveChanges();
-          
-                return RedirectToAction(nameof(Index));
-            
+
+            return RedirectToAction("MisTurnos", new { phone = turno?.Telefono });
+
         }
         [HttpPost]
         public IActionResult UpdatePedicuria(int Id, Turno turno)
@@ -209,7 +267,7 @@ namespace ProyectoFinalEstetica.Controllers
                 agendaContext.Turnos.Update(turno);
                 agendaContext.SaveChanges();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("MisTurnos", new { phone = turno?.Telefono });
         }
         [HttpPost]
         public IActionResult UpdatePeluqueria(int Id, Turno turno)
@@ -228,8 +286,8 @@ namespace ProyectoFinalEstetica.Controllers
             
                 agendaContext.Turnos.Update(turno);
                 agendaContext.SaveChanges();
-            
-            return RedirectToAction(nameof(Index));
+
+            return RedirectToAction("MisTurnos", new { phone = turno?.Telefono });
         }
     }
 }
