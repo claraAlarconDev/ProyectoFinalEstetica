@@ -1,1 +1,62 @@
-﻿
+﻿@model IEnumerable<Turno>
+<h1>Proximos Turnos</h1>
+<hr />
+@if (Model.FirstOrDefault() != null)
+{
+	<table class="table table-hover table-info table-striped">
+		<thead class="table-primary">
+			<tr>
+				<th>
+					<label>FECHA</label>
+				</th>
+				<th>
+					<label>HORARIO</label>
+				</th>
+				<th>
+					<label>NOMBRE</label>
+				</th>
+				<th>
+					<label>TELEFONO</label>
+				</th>
+				<th>
+					<label>SERVICIO</label>
+				</th>
+				<th>
+					<label>ESPECIALIDAD</label>
+				</th>
+				<th>
+				</th>
+			</tr>
+		</thead>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					<label>@item.Fecha.ToShortDateString()</label>
+				</td>
+
+				<td>
+					<label>@item.Horario</label>
+				</td>
+
+				<td>
+					<label>@item.Nombre</label>
+				</td>
+
+				<td>
+					<label>@item.Telefono</label>
+				</td>
+				<td>
+					<label>@item.servicio.tipo</label>
+				</td>
+				<td>
+					<label>@item.Especialidad</label>
+				</td>
+				<td>
+					<a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Cancelar</a>
+				</td>
+			</tr>
+		}
+	</table>
+	<a asp-action="Consultas" asp-controller="Contacto" class="btn btn-info" style="margin-top:10px">Volver</a>
+}
