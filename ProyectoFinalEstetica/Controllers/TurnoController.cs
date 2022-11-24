@@ -13,7 +13,8 @@ namespace ProyectoFinalEstetica.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-                return View();
+            List<Turno> turnos = agendaContext.Turnos.Include(t => t.servicio).ToList();
+            return View(turnos);
         }
 
         [HttpGet]
