@@ -162,7 +162,7 @@ namespace ProyectoFinalEstetica.Controllers
 
             List<string> horarios = new List<string> { "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00" };
             Dictionary<string, List<string>> mapaHorariosDisponiblesPorDia = new Dictionary<string, List<string>>();
-            List<Turno> turnos = agendaContext.Turnos.Where(x => x.Fecha >= DateTime.Today).ToList();
+            List<Turno> turnos = agendaContext.Turnos.Where(x => x.Fecha >= DateTime.Today && x.servicio.tipo.Equals("Manicuria")).ToList();
             for (int i = 0; i < 7; i++)
             {
                 string dia = DateTime.Today.AddDays(i).ToString("yyyy-MM-dd");
@@ -189,7 +189,7 @@ namespace ProyectoFinalEstetica.Controllers
 
             List<string> horarios = new List<string> { "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00" };
             Dictionary<string, List<string>> mapaHorariosDisponiblesPorDia = new Dictionary<string, List<string>>();
-            List<Turno> turnos = agendaContext.Turnos.Where(x => x.Fecha >= DateTime.Today).ToList();
+            List<Turno> turnos = agendaContext.Turnos.Where(x => x.Fecha >= DateTime.Today && x.servicio.tipo.Equals("Peluqueria")).ToList();
             for (int i = 0; i < 7; i++)
             {
                 string dia = DateTime.Today.AddDays(i).ToString("yyyy-MM-dd");
@@ -217,7 +217,7 @@ namespace ProyectoFinalEstetica.Controllers
 
             List<string> horarios = new List<string> { "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00" };
             Dictionary<string, List<string>> mapaHorariosDisponiblesPorDia = new Dictionary<string, List<string>>();
-            List<Turno> turnos = agendaContext.Turnos.Where(x => x.Fecha >= DateTime.Today).ToList();
+            List<Turno> turnos = agendaContext.Turnos.Where(x => x.Fecha >= DateTime.Today && x.servicio.tipo.Equals("Pedicuria")).ToList();
             for (int i = 0; i < 7; i++)
             {
                 string dia = DateTime.Today.AddDays(i).ToString("yyyy-MM-dd");
